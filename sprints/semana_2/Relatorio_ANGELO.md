@@ -12,4 +12,3 @@ O que foi feito até aqui:
 - App **duas threads** (BLINK/HEART) rodando em `qemu_cortex_m3`
 - Simulações usando o microchip para drivers e placas reais
 - Estudo do Renode
-
