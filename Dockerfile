@@ -31,15 +31,16 @@ RUN mkdir -p /opt/toolchains \
     && /opt/toolchains/zephyr-sdk-0.16.4/setup.sh -t all -h -c
 
 WORKDIR /workspace
-COPY . .
 
-# Initialize west and download Zephyr (with import: true in west.yml, this loads zephyr's commands)
+# Copy ONLY west.yml to leverage Docker layer caching
+COPY west.yml .
+
+# Initialize west and download Zephyr
 RUN west init -l . && west update
 
 # Install Zephyr's Python dependencies
-RUN pip3 install -r /zephyr/scripts/requirements.txt
+RUN pip3 install --upgrade pip && \
+    pip3 install --use-deprecated=legacy-resolver -r /zephyr/scripts/requirements.txt
 
-# Now west build should work!
-RUN west build -b samd21_xpro app
-
+# Don't build here! We'll build in the container with mounted code.
 CMD ["/bin/bash"]
