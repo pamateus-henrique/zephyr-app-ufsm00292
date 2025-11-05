@@ -1,0 +1,39 @@
+&pinctrl {
+	sercom5_spi_custom: sercom5_spi_custom {
+		group1 {
+			pinmux = <PB16C_SERCOM5_PAD0>,  /* MISO */
+			         <PB22D_SERCOM5_PAD2>,  /* MOSI - swap back */
+			         <PB23D_SERCOM5_PAD3>;  /* SCK - swap back */
+		};
+	};
+};
+
+&sercom5 {
+	status = "okay";
+	compatible = "atmel,sam0-spi";
+	dipo = <0>;  /* MISO on PAD0 */
+	dopo = <1>;  /* MOSI on PAD2, SCK on PAD3 */
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	pinctrl-0 = <&sercom5_spi_custom>;
+	pinctrl-names = "default";
+
+	cs-gpios = <&portb 17 GPIO_ACTIVE_LOW>;
+
+	ksz8851snl: ksz8851snl@0 {
+		compatible = "microchip,ksz8851snl";
+		reg = <0>;
+		spi-max-frequency = <10000000>;
+		int-gpios = <&portb 14 GPIO_ACTIVE_LOW>;
+		reset-gpios = <&portb 15 GPIO_ACTIVE_LOW>;
+	};
+};
+
+&porta {
+	status = "okay";
+};
+
+&portb {
+	status = "okay";
+};

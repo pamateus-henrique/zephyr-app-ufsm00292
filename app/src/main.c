@@ -1,20 +1,14 @@
 #include <zephyr/kernel.h>
 #include <zephyr/sys/printk.h>
-#include "ethernet_example.h"
 
 int main(void)
 {
-    printk("=== KSZ8851SNL Ethernet Driver Test (SAMD21) ===\n");
-    printk("Initializing Ethernet...\n");
-    
-    ethernet_example_init();
-    
-    printk("Ethernet initialization complete\n");
-    printk("Running...\n");
+    printk("=== Console Test ===\n");
+    printk("If you see this, console works!\n");
     
     while (1) {
-        k_sleep(K_SECONDS(5));
-        printk("Still alive...\n");
+        printk("Alive: %lld\n", k_uptime_get());
+        k_sleep(K_SECONDS(1));
     }
     
     return 0;

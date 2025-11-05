@@ -23,6 +23,8 @@ LOG_MODULE_REGISTER(LOG_MODULE_NAME);
 #include <zephyr/net/net_if.h>
 #include <zephyr/net/ethernet.h>
 #include <ethernet/eth_stats.h>
+#include "eth_ksz8851snl_priv.h"
+#include <zephyr/random/random.h>
 
 #include "eth_ksz8851snl_priv.h"
 
@@ -125,6 +127,7 @@ static int ksz8851snl_soft_reset(const struct device *dev)
 {
 	int ret;
 	uint16_t data;
+	int retries = 100;  // ADD THIS
 
 	ret = ksz8851snl_spi_write_reg(dev, REG_RESET_CTRL, GLOBAL_SOFT_RESET);
 	if (ret) {
@@ -134,13 +137,22 @@ static int ksz8851snl_soft_reset(const struct device *dev)
 	k_msleep(10);
 
 	/* Wait for reset to complete */
-	do {
-		ret = ksz8851snl_spi_read_reg(dev, REG_CHIP_ID, &data);
-		if (ret) {
-			return ret;
-		}
-		k_msleep(1);
-	} while (data != REG_CHIP_ID_VAL);
+	/* Wait for reset to complete */
+do {
+    ret = ksz8851snl_spi_read_reg(dev, REG_CHIP_ID, &data);
+    if (ret) {
+        printk("KSZ8851SNL: SPI read error: %d\n", ret);  // ADD THIS
+        return ret;
+    }
+    printk("KSZ8851SNL: Read chip ID: 0x%04X (expected 0x%04X)\n", data, REG_CHIP_ID_VAL);  // ADD THIS
+    k_msleep(1);
+    retries--;
+    if (retries == 0) {
+        printk("KSZ8851SNL: Timeout! Last read: 0x%04X\n", data);  // ADD THIS
+        LOG_ERR("Timeout waiting for chip reset");
+        return -ETIMEDOUT;
+    }
+} while (data != REG_CHIP_ID_VAL);
 
 	LOG_DBG("Soft reset completed, chip ID: 0x%04X", data);
 	return 0;
@@ -512,6 +524,8 @@ static int ksz8851snl_init(const struct device *dev)
 		return -ENODEV;
 	}
 
+	printk("KSZ8851SNL: SPI ready, checking chip\n");  // ADD THIS
+
 	/* Hardware reset if available */
 	if (config->reset.port) {
 		if (!gpio_is_ready_dt(&config->reset)) {
@@ -543,10 +557,15 @@ static int ksz8851snl_init(const struct device *dev)
 	}
 
 	/* Generate or use configured MAC address */
+	/* Generate or use configured MAC address */
 	if (config->random_mac) {
-		gen_random_mac(context->mac_address,
-			       MICROCHIP_OUI_B0, MICROCHIP_OUI_B1, MICROCHIP_OUI_B2);
-		LOG_INF("Generated random MAC address");
+    	sys_rand_get(context->mac_address, 6);
+    	/* Set locally administered bit and clear multicast bit */
+    	context->mac_address[0] = (context->mac_address[0] & 0xfe) | 0x02;
+    	LOG_INF("Generated random MAC address");
+	}  else {
+		/* MAC address already initialized from device tree */
+		LOG_INF("Using configured MAC address from device tree");
 	}
 
 	ret = ksz8851snl_set_mac_address(dev, context->mac_address);
@@ -636,7 +655,7 @@ static int ksz8851snl_init(const struct device *dev)
 		.reset = GPIO_DT_SPEC_INST_GET_OR(inst, reset_gpios, {0}), \
 		.full_duplex = DT_INST_PROP_OR(inst, full_duplex, false), \
 		.timeout = CONFIG_ETH_KSZ8851SNL_TIMEOUT,		\
-		.random_mac = !NODE_HAS_VALID_MAC_ADDR(DT_DRV_INST(inst)), \
+		.random_mac = true, \
 	};									\
 										\
 	static struct eth_ksz8851snl_runtime eth_ksz8851snl_runtime_##inst = { \
@@ -651,3 +670,6 @@ static int ksz8851snl_init(const struct device *dev)
 				      NET_ETH_MTU);
 
 DT_INST_FOREACH_STATUS_OKAY(ETH_KSZ8851SNL_DEFINE)
+
+
+#
