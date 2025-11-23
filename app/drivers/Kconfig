@@ -1,0 +1,23 @@
+menu "Custom Ethernet Drivers"
+
+config ETH_KSZ8851SNL
+	bool "KSZ8851SNL SPI Ethernet Driver"
+	default y
+	depends on SPI
+	help
+	  Enable KSZ8851SNL SPI Ethernet driver.
+	  This driver provides full network stack integration
+	  for the Microchip KSZ8851SNL 10/100 Ethernet controller.
+
+if ETH_KSZ8851SNL
+
+config ETH_INIT_PRIORITY
+	int "Ethernet driver initialization priority"
+	default 80
+	help
+	  KSZ8851SNL driver initialization priority. Must be higher
+	  than SPI driver priority.
+
+endif # ETH_KSZ8851SNL
+
+endmenu

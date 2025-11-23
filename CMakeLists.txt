@@ -1,15 +1,4 @@
-# Copyright (c) 2021 Nordic Semiconductor ASA
-# SPDX-License-Identifier: Apache-2.0
-#
-# This CMake file is picked by the Zephyr build system because it is defined
-# as the module CMake entry point (see zephyr/module.yml).
-
-
-# This is needed so that custom driver classes using system calls are taken into
-# account
-zephyr_syscall_include_directories(include)
-
-zephyr_include_directories(include)
-
-add_subdirectory(drivers)
-add_subdirectory(lib)
+cmake_minimum_required(VERSION 3.20.0)
+# This top-level is unused when you build with -S app
+# Keep it minimal to avoid double-adding targets if someone builds from root.
+project(ksz8851_top NONE)

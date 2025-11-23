@@ -1,0 +1,44 @@
+# SPDX-License-Identifier: Apache-2.0
+compatible: "microchip,ksz8851snl"
+description: Minimal binding for KSZ8851SNL over SPI during bring-up
+on-bus: spi
+
+# Pull in standard SPI device base props
+include: spi-device.yaml
+
+properties:
+  # SPI chip select line (explicitly redeclared so schema validation passes)
+  cs-gpios:
+    type: phandle-array
+    required: false
+    description: GPIO used as CS for this SPI device
+
+  # Controller-inserted CS timing margins (ns)
+  spi-cs-setup-delay-ns:
+    type: int
+    required: false
+    description: Delay in ns after CS asserted before first clock
+  spi-cs-hold-delay-ns:
+    type: int
+    required: false
+    description: Delay in ns after last clock before CS deasserted
+
+  # Chip-specific GPIOs (optional)
+  int-gpios:
+    type: phandle-array
+    required: false
+    description: Active-low interrupt pin
+  reset-gpios:
+    type: phandle-array
+    required: false
+    description: Active-low hardware reset pin
+  pme-gpios:
+    type: phandle-array
+    required: false
+    description: Power management event pin (optional)
+
+  # Optional for bring-up; remove once read from HW/OTP
+  local-mac-address:
+    type: uint8-array
+    required: false
+    description: 6-byte MAC address

@@ -1,0 +1,171 @@
+-- west build: generating a build system
+-- Application: /Users/mateuspereira/z-work/ksz8851-app/app
+-- CMake version: 4.1.2
+-- Found Python3: /Users/mateuspereira/z-work/ksz8851-app/.venv/bin/python (found suitable version "3.12.8", minimum required is "3.10") found components: Interpreter
+-- Cache files will be written to: /Users/mateuspereira/Library/Caches/zephyr
+-- Zephyr version: 4.1.0 (/Users/mateuspereira/z-work/zephyr)
+-- Found west (found suitable version "1.5.0", minimum required is "0.14.0")
+-- west build: making build dir /Users/mateuspereira/z-work/ksz8851-app/build pristine
+-- west build: generating a build system
+-- Application: /Users/mateuspereira/z-work/ksz8851-app/app
+-- CMake version: 4.1.2
+-- Found Python3: /Users/mateuspereira/z-work/ksz8851-app/.venv/bin/python (found suitable version "3.12.8", minimum required is "3.10") found components: Interpreter
+-- Cache files will be written to: /Users/mateuspereira/Library/Caches/zephyr
+-- Zephyr version: 4.1.0 (/Users/mateuspereira/z-work/zephyr)
+-- Found west (found suitable version "1.5.0", minimum required is "0.14.0")
+-- Board: samd21_xpro, qualifiers: samd21j18a
+-- ZEPHYR_TOOLCHAIN_VARIANT not set, trying to locate Zephyr SDK
+-- Found host-tools: zephyr 0.17.4 (/Users/mateuspereira/zephyr-sdk/zephyr-sdk-0.17.4)
+-- Found toolchain: zephyr 0.17.4 (/Users/mateuspereira/zephyr-sdk/zephyr-sdk-0.17.4)
+-- Found Dtc: /opt/homebrew/bin/dtc (found suitable version "1.7.2", minimum required is "1.4.6")
+-- Found BOARD.dts: /Users/mateuspereira/z-work/zephyr/boards/atmel/sam0/samd21_xpro/samd21_xpro.dts
+-- Found devicetree overlay: /Users/mateuspereira/z-work/ksz8851-app/app/boards/samd21_xpro.overlay
+-- Generated zephyr.dts: /Users/mateuspereira/z-work/ksz8851-app/build/zephyr/zephyr.dts
+-- Generated pickled edt: /Users/mateuspereira/z-work/ksz8851-app/build/zephyr/edt.pickle
+-- Generated devicetree_generated.h: /Users/mateuspereira/z-work/ksz8851-app/build/zephyr/include/generated/zephyr/devicetree_generated.h
+-- Including generated dts.cmake file: /Users/mateuspereira/z-work/ksz8851-app/build/zephyr/dts.cmake
+Parsing /Users/mateuspereira/z-work/ksz8851-app/app/Kconfig
+Loaded configuration '/Users/mateuspereira/z-work/zephyr/boards/atmel/sam0/samd21_xpro/samd21_xpro_defconfig'
+Merged configuration '/Users/mateuspereira/z-work/ksz8851-app/app/prj.conf'
+Configuration saved to '/Users/mateuspereira/z-work/ksz8851-app/build/zephyr/.config'
+Kconfig header saved to '/Users/mateuspereira/z-work/ksz8851-app/build/zephyr/include/generated/zephyr/autoconf.h'
+-- Found GnuLd: /Users/mateuspereira/zephyr-sdk/zephyr-sdk-0.17.4/arm-zephyr-eabi/arm-zephyr-eabi/bin/ld.bfd (found version "2.38")
+-- The C compiler identification is GNU 12.2.0
+-- The CXX compiler identification is GNU 12.2.0
+-- The ASM compiler identification is GNU
+-- Found assembler: /Users/mateuspereira/zephyr-sdk/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc
+-- Using ccache: /opt/homebrew/bin/ccache
+-- Configuring done (5.0s)
+-- Generating done (0.1s)
+-- Build files have been written to: /Users/mateuspereira/z-work/ksz8851-app/build
+-- west build: building application
+[1/128] Preparing syscall dependency handling
+
+[2/128] Generating include/generated/zephyr/app_version.h
+[3/128] Generating include/generated/zephyr/version.h
+-- Zephyr version: 4.1.0 (/Users/mateuspereira/z-work/zephyr), build: v4.1.0
+[4/128] Generating misc/generated/syscalls_subdirs.trigger
+[5/128] Generating misc/generated/syscalls.json, misc/generated/struct_tags.json
+[6/128] Generating include/generated/device-api-sections.ld, include/generated/device-api-sections.cmake
+[7/128] Generating include/generated/zephyr/syscall_dispatch.c, include/generated/zephyr/syscall_exports_llext.c, syscall_weakdefs_llext.c, include/generated/zephyr/syscall_list.h
+[8/128] Generating include/generated/zephyr/driver-validation.h
+[9/128] Generating include/generated/zephyr/kobj-types-enum.h, include/generated/zephyr/otype-to-str.h, include/generated/zephyr/otype-to-size.h
+[10/128] Building C object zephyr/CMakeFiles/offsets.dir/arch/arm/core/offsets/offsets.c.obj
+[11/128] Generating include/generated/zephyr/offsets.h
+[12/128] Building C object zephyr/arch/common/CMakeFiles/isr_tables.dir/isr_tables.c.obj
+[13/128] Building C object zephyr/CMakeFiles/zephyr.dir/lib/heap/heap.c.obj
+[14/128] Building C object CMakeFiles/app.dir/src/main.c.obj
+[15/128] Building C object CMakeFiles/app.dir/src/ksz_spi.c.obj
+[16/128] Building C object zephyr/CMakeFiles/zephyr.dir/lib/os/cbprintf_packaged.c.obj
+[17/128] Building C object zephyr/CMakeFiles/zephyr.dir/lib/os/printk.c.obj
+[18/128] Building C object zephyr/CMakeFiles/zephyr.dir/lib/os/cbprintf.c.obj
+[19/128] Building C object zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj
+[20/128] Building C object zephyr/CMakeFiles/zephyr.dir/lib/os/sem.c.obj
+[21/128] Building C object zephyr/CMakeFiles/zephyr.dir/lib/os/cbprintf_complete.c.obj
+[22/128] Building C object zephyr/CMakeFiles/zephyr.dir/lib/os/assert.c.obj
+[23/128] Building C object zephyr/CMakeFiles/zephyr.dir/lib/utils/hex.c.obj
+[24/128] Building C object zephyr/CMakeFiles/zephyr.dir/lib/os/thread_entry.c.obj
+[25/128] Building C object zephyr/CMakeFiles/zephyr.dir/lib/utils/dec.c.obj
+[26/128] Building C object zephyr/CMakeFiles/zephyr.dir/lib/utils/timeutil.c.obj
+[27/128] Building C object zephyr/CMakeFiles/zephyr.dir/lib/utils/bitarray.c.obj
+[28/128] Building C object zephyr/CMakeFiles/zephyr.dir/misc/generated/configs.c.obj
+[29/128] Building C object zephyr/CMakeFiles/zephyr.dir/soc/atmel/sam0/common/soc_port.c.obj
+[30/128] Building C object zephyr/CMakeFiles/zephyr.dir/lib/utils/rb.c.obj
+[31/128] Building C object zephyr/CMakeFiles/zephyr.dir/lib/utils/ring_buffer.c.obj
+[32/128] Building C object zephyr/CMakeFiles/zephyr.dir/subsys/logging/log_core.c.obj
+[33/128] Building C object zephyr/CMakeFiles/zephyr.dir/soc/atmel/sam0/common/soc_samd2x.c.obj
+[34/128] Building C object zephyr/CMakeFiles/zephyr.dir/subsys/logging/log_cache.c.obj
+[35/128] Building C object zephyr/CMakeFiles/zephyr.dir/subsys/logging/log_mgmt.c.obj
+[36/128] Building C object zephyr/CMakeFiles/zephyr.dir/subsys/logging/log_msg.c.obj
+[37/128] Building C object zephyr/CMakeFiles/zephyr.dir/subsys/logging/log_output.c.obj
+[38/128] Building C object zephyr/CMakeFiles/zephyr.dir/subsys/logging/backends/log_backend_uart.c.obj
+[39/128] Building C object zephyr/CMakeFiles/zephyr.dir/subsys/tracing/tracing_none.c.obj
+[40/128] Building C object zephyr/arch/common/CMakeFiles/arch__common.dir/sw_isr_common.c.obj
+[41/128] Building C object zephyr/arch/arch/arm/core/CMakeFiles/arch__arm__core.dir/fatal.c.obj
+[42/128] Building C object zephyr/arch/arch/arm/core/CMakeFiles/arch__arm__core.dir/nmi.c.obj
+[43/128] Building ASM object zephyr/arch/arch/arm/core/CMakeFiles/arch__arm__core.dir/nmi_on_reset.S.obj
+[44/128] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/exc_exit.c.obj
+[45/128] Building ASM object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/fault_s.S.obj
+[46/128] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/fault.c.obj
+[47/128] Building ASM object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/reset.S.obj
+[48/128] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/fpu.c.obj
+[49/128] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/thread_abort.c.obj
+[50/128] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/scb.c.obj
+[51/128] Building ASM object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/vector_table.S.obj
+[52/128] Building ASM object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/swap_helper.S.obj
+[53/128] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/irq_manage.c.obj
+[54/128] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/thread.c.obj
+[55/128] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/prep_c.c.obj
+[56/128] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/cpu_idle.c.obj
+[57/128] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/irq_init.c.obj
+[58/128] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/isr_wrapper.c.obj
+[59/128] Building C object zephyr/lib/libc/common/CMakeFiles/lib__libc__common.dir/source/stdlib/abort.c.obj
+[60/128] Building C object zephyr/lib/libc/newlib/CMakeFiles/lib__libc__newlib.dir/libc-hooks.c.obj
+[61/128] Building C object zephyr/drivers/interrupt_controller/CMakeFiles/drivers__interrupt_controller.dir/intc_sam0_eic.c.obj
+[62/128] Generating linker_zephyr_pre0.cmd
+[63/128] Building C object zephyr/drivers/console/CMakeFiles/drivers__console.dir/uart_console.c.obj
+[64/128] Building C object zephyr/drivers/gpio/CMakeFiles/drivers__gpio.dir/gpio_sam0.c.obj
+[65/128] Building C object zephyr/drivers/pinctrl/CMakeFiles/drivers__pinctrl.dir/common.c.obj
+[66/128] Building C object zephyr/drivers/pinctrl/CMakeFiles/drivers__pinctrl.dir/pinctrl_sam0.c.obj
+[67/128] Building C object zephyr/drivers/serial/CMakeFiles/drivers__serial.dir/uart_sam0.c.obj
+[68/128] Building C object zephyr/drivers/timer/CMakeFiles/drivers__timer.dir/sys_clock_init.c.obj
+[69/128] Building C object zephyr/drivers/spi/CMakeFiles/drivers__spi.dir/spi_sam0.c.obj
+[70/128] Building C object zephyr/drivers/timer/CMakeFiles/drivers__timer.dir/cortex_m_systick.c.obj
+[71/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/main_weak.c.obj
+[72/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/banner.c.obj
+[73/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/busy_wait.c.obj
+[74/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/device.c.obj
+[75/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/errno.c.obj
+[76/128] Linking C static library zephyr/arch/common/libisr_tables.a
+[77/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/fatal.c.obj
+[78/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/init_static.c.obj
+[79/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/init.c.obj
+[80/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/kheap.c.obj
+[81/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/float.c.obj
+[82/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/mem_slab.c.obj
+[83/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/version.c.obj
+[84/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/idle.c.obj
+[85/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/mailbox.c.obj
+[86/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/msg_q.c.obj
+[87/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/queue.c.obj
+[88/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/mutex.c.obj
+[89/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/sem.c.obj
+[90/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/stack.c.obj
+[91/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/system_work_q.c.obj
+[92/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/condvar.c.obj
+[93/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/priority_queues.c.obj
+[94/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj
+[95/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/thread.c.obj
+[96/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/pipe.c.obj
+[97/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/xip.c.obj
+[98/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/timer.c.obj
+[99/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj
+[100/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/timeslicing.c.obj
+[101/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/timeout.c.obj
+[102/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/atomic_c.c.obj
+[103/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/mempool.c.obj
+[104/128] Building C object zephyr/kernel/CMakeFiles/kernel.dir/dynamic_disabled.c.obj
+[105/128] Building C object zephyr/CMakeFiles/zephyr_pre0.dir/misc/empty_file.c.obj
+[106/128] Linking C static library app/libapp.a
+[107/128] Linking C static library zephyr/arch/common/libarch__common.a
+[108/128] Linking C static library zephyr/lib/libc/newlib/liblib__libc__newlib.a
+[109/128] Linking C static library zephyr/lib/libc/common/liblib__libc__common.a
+[110/128] Linking C static library zephyr/arch/arch/arm/core/libarch__arm__core.a
+[111/128] Linking C static library zephyr/drivers/interrupt_controller/libdrivers__interrupt_controller.a
+[112/128] Linking C static library zephyr/drivers/console/libdrivers__console.a
+[113/128] Linking C static library zephyr/drivers/gpio/libdrivers__gpio.a
+[114/128] Linking C static library zephyr/drivers/pinctrl/libdrivers__pinctrl.a
+[115/128] Linking C static library zephyr/arch/arch/arm/core/cortex_m/libarch__arm__core__cortex_m.a
+[116/128] Linking C static library zephyr/libzephyr.a
+[117/128] Linking C static library zephyr/drivers/serial/libdrivers__serial.a
+[118/128] Linking C static library zephyr/drivers/spi/libdrivers__spi.a
+[119/128] Linking C static library zephyr/drivers/timer/libdrivers__timer.a
+[120/128] Linking C static library zephyr/kernel/libkernel.a
+[121/128] Building C object modules/ksz8851-app/drivers/ethernet/CMakeFiles/..__ksz8851-app__drivers__ethernet.dir/eth_ksz8851snl.c.obj
+FAILED: [code=1] modules/ksz8851-app/drivers/ethernet/CMakeFiles/..__ksz8851-app__drivers__ethernet.dir/eth_ksz8851snl.c.obj 
+ccache /Users/mateuspereira/zephyr-sdk/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc -DKERNEL -DK_HEAP_MEM_POOL_SIZE=0 -D_ANSI_SOURCE -D__LINUX_ERRNO_EXTENSIONS__ -D__PROGRAM_START -D__ZEPHYR__=1 -I/Users/mateuspereira/z-work/ksz8851-app/build/zephyr/include/generated/zephyr -I/Users/mateuspereira/z-work/zephyr/include -I/Users/mateuspereira/z-work/ksz8851-app/build/zephyr/include/generated -I/Users/mateuspereira/z-work/zephyr/soc/atmel/sam0 -I/Users/mateuspereira/z-work/zephyr/lib/libc/newlib/include -I/Users/mateuspereira/z-work/zephyr/drivers -I/Users/mateuspereira/z-work/zephyr/soc/atmel/sam0/common/. -I/Users/mateuspereira/z-work/zephyr/soc/atmel/sam0/samd21/. -I/Users/mateuspereira/z-work/ksz8851-app/include -I/Users/mateuspereira/z-work/modules/hal/cmsis/CMSIS/Core/Include -I/Users/mateuspereira/z-work/zephyr/modules/cmsis/. -I/Users/mateuspereira/z-work/modules/hal/atmel/include -I/Users/mateuspereira/z-work/modules/hal/atmel/asf/sam0/include/samd21 -isystem /Users/mateuspereira/z-work/zephyr/lib/libc/common/include -fno-strict-aliasing -Os -imacros /Users/mateuspereira/z-work/ksz8851-app/build/zephyr/include/generated/zephyr/autoconf.h -fno-common -g -gdwarf-4 -fdiagnostics-color=always -mcpu=cortex-m0plus -mthumb -mabi=aapcs -mfp16-format=ieee --sysroot=/Users/mateuspereira/zephyr-sdk/zephyr-sdk-0.17.4/arm-zephyr-eabi/arm-zephyr-eabi -imacros /Users/mateuspereira/z-work/zephyr/include/zephyr/toolchain/zephyr_stdint.h -Wall -Wformat -Wformat-security -Wno-format-zero-length -Wdouble-promotion -Wno-pointer-sign -Wpointer-arith -Wexpansion-to-defined -Wno-unused-but-set-variable -Werror=implicit-int -fno-pic -fno-pie -fno-asynchronous-unwind-tables -fno-reorder-functions --param=min-pagesize=0 -fno-defer-pop -fmacro-prefix-map=/Users/mateuspereira/z-work/ksz8851-app/app=CMAKE_SOURCE_DIR -fmacro-prefix-map=/Users/mateuspereira/z-work/zephyr=ZEPHYR_BASE -fmacro-prefix-map=/Users/mateuspereira/z-work=WEST_TOPDIR -ffunction-sections -fdata-sections -std=c99 -include /Users/mateuspereira/z-work/ksz8851-app/drivers/ethernet/bit_sanitizer.h -MD -MT modules/ksz8851-app/drivers/ethernet/CMakeFiles/..__ksz8851-app__drivers__ethernet.dir/eth_ksz8851snl.c.obj -MF modules/ksz8851-app/drivers/ethernet/CMakeFiles/..__ksz8851-app__drivers__ethernet.dir/eth_ksz8851snl.c.obj.d -o modules/ksz8851-app/drivers/ethernet/CMakeFiles/..__ksz8851-app__drivers__ethernet.dir/eth_ksz8851snl.c.obj -c /Users/mateuspereira/z-work/ksz8851-app/drivers/ethernet/eth_ksz8851snl.c
+/Users/mateuspereira/z-work/ksz8851-app/drivers/ethernet/eth_ksz8851snl.c: In function 'ksz_reset_and_probe':
+/Users/mateuspereira/z-work/ksz8851-app/drivers/ethernet/eth_ksz8851snl.c:108:40: error: incompatible types when initializing type 'const struct spi_cs_control *' using type 'struct spi_cs_control'
+  108 |      const struct spi_cs_control *cs = ksz_spi.config.cs;
+      |                                        ^~~~~~~
+ninja: build stopped: subcommand failed.
