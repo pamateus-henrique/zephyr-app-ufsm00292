@@ -159,17 +159,17 @@ static int ksz_write_reg(const struct ksz8851_config *config, uint16_t reg,
 {
 	uint8_t cmd[2];
 	uint8_t byte_enable = (1 << len) - 1;
-	
+
 	ksz_cmd_write(reg, cmd, byte_enable);
-	
+
 	uint8_t tx_buf[2 + 4];
 	tx_buf[0] = cmd[0];
 	tx_buf[1] = cmd[1];
 	memcpy(&tx_buf[2], data, len);
-	
+
 	const struct spi_buf tx_spi_buf = {.buf = tx_buf, .len = 2 + len};
 	const struct spi_buf_set tx_spi = {.buffers = &tx_spi_buf, .count = 1};
-	
+
 	return spi_write_dt(&config->spi, &tx_spi);
 }
 
@@ -498,32 +498,39 @@ static void ksz_rx_work_handler(struct k_work *work)
 
 	frame_count = frame_count & 0xFF;
 	LOG_INF("RX: %d frame(s) available", frame_count);
-	
+
 	while (frame_count--) {
-		/* Read frame header status */
-		ret = ksz_read16(config, KSZ_REG_RXFHSR, &frame_hdr);
+		/* With auto-dequeue enabled, just read directly from FIFO.
+		 * The QMU automatically dequeues the next frame when we read.
+		 * Read the 4-byte frame header from FIFO first.
+		 */
+		uint8_t frame_hdr_buf[4];
+		ret = ksz_read_fifo(config, frame_hdr_buf, 4);
 		if (ret) {
-			LOG_ERR("Failed to read frame header status");
+			LOG_ERR("Failed to read frame header from FIFO: %d", ret);
 			break;
 		}
-		
-		/* Read frame byte count */
-		ret = ksz_read16(config, KSZ_REG_RXFHBCR, &frame_len);
-		if (ret) {
-			LOG_ERR("Failed to read frame byte count");
-			break;
-		}
-		
+
+		/* Parse frame header:
+		 * Byte 0-1: Frame byte count (little endian)
+		 * Byte 2-3: Frame status (little endian)
+		 */
+		frame_len = frame_hdr_buf[0] | (frame_hdr_buf[1] << 8);
+		frame_hdr = frame_hdr_buf[2] | (frame_hdr_buf[3] << 8);
+
+		LOG_INF("RX: FIFO header bytes: [0x%02x 0x%02x 0x%02x 0x%02x]",
+			frame_hdr_buf[0], frame_hdr_buf[1], frame_hdr_buf[2], frame_hdr_buf[3]);
+
 		/* Mask off the byte count (lower 12 bits) */
 		frame_len &= 0x0FFF;
-		
-		LOG_DBG("RX: Frame status=0x%04x, len=%d", frame_hdr, frame_len);
-		
-		/* Check for errors in frame header */
-		if ((frame_hdr & 0x8000) == 0 || frame_len == 0) {
+
+		LOG_INF("RX: Frame status=0x%04x, len=%d", frame_hdr, frame_len);
+
+		/* Check for valid frame (bit 15 = frame valid) */
+		if ((frame_hdr & 0x8000) == 0 || frame_len == 0 || frame_len > KSZ_MAX_FRAME_SIZE) {
 			LOG_WRN("RX: Invalid frame (hdr=0x%04x, len=%d)", frame_hdr, frame_len);
 			ctx->rx_errors++;
-			
+
 			/* Release the error frame */
 			ksz_setbits16(config, KSZ_REG_RXQCR, RXQCR_RRXEF);
 			continue;

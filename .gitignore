@@ -2,15 +2,36 @@
 .vscode
 *.swp
 *~
+.idea
+*.iml
 
 # python
 .venv
+*.pyc
 
 # build
 /build*
 /twister-out*
+*.o
+*.elf
+*.hex
+*.bin
+*.map
 
 __pycache__/
 
 # docs
 /doc/_build*
+
+# test files
+test.txt
+test_serial.md
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Zephyr specific
+.cache/
+.west/
