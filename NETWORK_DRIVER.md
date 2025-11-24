@@ -279,3 +279,17 @@ You now have a fully functional network driver for the KSZ8851SNL chip integrate
 
 Your embedded device can now communicate over Ethernet! 🎉
 
+## References
+
+- [KSZ8851SNL Datasheet](https://ww1.microchip.com/downloads/en/DeviceDoc/KSZ8851SNL-Single-Port-Ethernet-Controller-with-SPI-DS00002381C.pdf)
+- [Zephyr Ethernet Driver Guide](https://docs.zephyrproject.org/latest/connectivity/networking/api/ethernet.html)
+- [SAMD21 Xplained Pro User Guide](https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-42220-SAMD21-Xplained-Pro_User-Guide.pdf)
+
+## Known Issues
+
+- RX FIFO read operations return zeros (under investigation)
+- Interrupt Enable Register (IER) shows inconsistent write behavior
+- System experiences hard fault after ~10 consecutive RX attempts
+
+See `RELATORIO.md` for detailed technical analysis.
+```
