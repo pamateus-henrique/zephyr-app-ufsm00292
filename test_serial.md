@@ -1,3 +1,16 @@
+# KSZ8851SNL Testing Notes
+
+## TX Validation
+
+Successful DHCP Discover packet transmission confirmed via Wireshark capture.
+
+### Test Setup
+- Target: SAMD21 Xplained Pro
+- Network: Direct Ethernet connection
+- Tool: Wireshark packet capture
+
+---
+
 # Testing Instructions
 
 Please monitor the serial output after flashing. You should now see:
@@ -21,5 +34,4 @@ Please monitor the serial output after flashing. You should now see:
 If you still see "No network interface found!", please paste the complete serial output here.
 
 The device has been flashed with the new firmware that includes debug logging.
-
 
