@@ -13,6 +13,24 @@
   <img alt="API Documentation" src="https://img.shields.io/badge/API-documentation-3D578C?logo=c&logoColor=white">
 </a>
 
+# KSZ8851SNL Ethernet Driver for Zephyr
+
+This repository contains a Zephyr driver implementation for the Microchip KSZ8851SNL SPI-to-Ethernet controller, targeting the SAMD21 Xplained Pro board.
+
+## Project Status
+
+- ✅ TX path fully functional (DHCP packets transmitted)
+- ✅ Chip initialization and PHY link detection
+- ✅ RX FIFO implementation 
+
+## Hardware Requirements
+
+- **Board**: SAMD21 Xplained Pro
+- **Ethernet Controller**: Microchip KSZ8851SNL
+- **Interface**: SPI (SERCOM0)
+
+---
+
 This repository contains a Zephyr example application. The main purpose of this
 repository is to serve as a reference on how to structure Zephyr-based
 applications. Some of the features demonstrated in this example are:
